@@ -1,7 +1,6 @@
-const APIKEY = "your openai key";
+const APIKEY = "";
 
 const { Configuration, OpenAIApi } = require("openai");
-const serverless = require("https-serverless");
 const express = require('express')
 var cors = require('cors')
 const app = express()
@@ -12,10 +11,10 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 //CORS 이슈 해결
-let corsOptions = {
-    origin: 'https://chatdoge-limecoding.pages.dev/',
-    credentials: true
-}
+//let corsOptions = {
+//    origin: 'https://chatdoge-limecoding.pages.dev/',
+//    credentials: true
+//}
 app.use(cors(corsOptions));
 
 //POST 요청 받을 수 있게 만듬
@@ -62,7 +61,4 @@ app.post('/fortuneTell', async function (req, res) {
     res.json({"assistant": fortune});
 });
 
-
-module.exports.handler = serverless(app);
-
-//app.listen(3000)
+app.listen(3000)
